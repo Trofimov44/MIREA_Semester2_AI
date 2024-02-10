@@ -3,12 +3,6 @@ a = x[1::2]
 b = x[0::2]
 b = b[::-1]
 q = []
-print(a)
-print(b)
-if len(b) > len(a):
-    c = len(b)
-else:
-    c = len(a)
 for i in range(0, c):
     q.append(b[i])
     q.append(a[i])
