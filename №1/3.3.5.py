@@ -3,7 +3,13 @@ a = x[1::2]
 b = x[0::2]
 b = b[::-1]
 q = []
-for i in range(0, c):
+# print(a)
+# print(b)
+# if len(b) > len(a):
+#     c = len(b)
+# else:
+#     c = len(a)
+for i in range(0, len(a)):
     q.append(b[i])
     q.append(a[i])
 print(q)
