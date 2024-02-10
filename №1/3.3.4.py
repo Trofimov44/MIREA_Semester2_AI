@@ -1,2 +1,2 @@
-# for i in range(105, 5, -25):
-#     print(i)
+for i in range(105, 5, -25):
+    print(i)
