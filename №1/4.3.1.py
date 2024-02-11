@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-n = 10
-array = np.random.rand(n)
+a = 10
+array = np.random.rand(a)
 b = np.mean(array)
 c = np.median(array)
 
