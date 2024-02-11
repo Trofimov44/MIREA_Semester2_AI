@@ -1,2 +1,2 @@
-from math import e, sin, cos
+from math import *
 while True: print(eval((input("> "))))
