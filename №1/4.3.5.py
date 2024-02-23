@@ -1,5 +1,5 @@
 from math import *
-while True: print(eval((input("> "))))
+while True: print(eval((input(">> "))))
 
 # V2
 # def e1(a, b):
