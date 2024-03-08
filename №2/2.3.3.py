@@ -1,5 +1,5 @@
 import pandas as pd  
-u = "https://github.com/akmand/datasets/blob/main/cdc.csv" 
+u = "" 
 dataframe=pd.read_csv(u) 
 dataframe.head(10) 
 dataframe.tail(3)  
