@@ -1,65 +1,26 @@
-class Node:
-    def __init__(self, val):
-        self.l = None
-        self.r = None
-        self.v = val
+from sklearn.model_selection import train_test_split
+from sklearn import tree
+import pandas as pd
+import numpy as np
+url="https://raw.githubusercontent.com/likarajo/petrol_consumption/master/data/petrol_consumption.csv"
+dataset=pd.read_csv(url)
+dataset.head()
+print(dataset.shape)
+dataset.describe()
+from sklearn import tree
+X = dataset.iloc[:, :- 1].values
+y = dataset.iloc[:, 1].values
+print(X)
+print(y)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
-class Tree:
-    def __init__(self):
-        self.root = None
-
-    def add(self, val):
-        if self.root is None:
-            self.root = Node(val)
-        else:
-            self._add(val, self.root)
-
-    def _add(self, val, node):
-        if val < node.v:
-            if node.l is not None:
-                self._add(val, node.l)
-            else:
-                node.l = Node(val)
-        else:
-            if node.r is not None:
-                self._add(val, node.r)
-            else:
-                node.r = Node(val)
-
-    def find(self, val):
-        if self.root is not None:
-            return self._find(val, self.root)
-        else:
-            return None
-
-    def _find(self, val, node):
-        if val == node.v:
-            return node
-        elif (val < node.v and node.l is not None):
-            return self._find(val, node.l)
-        elif (val > node.v and node.r is not None):
-            return self._find(val, node.r)
-
-    def printTree(self):
-        if self.root is not None:
-            self._printTree(self.root)
-
-    def _printTree(self, node):
-        if node is not None:
-            self._printTree(node.l)
-            print(str(node.v) + ' ')
-            self._printTree(node.r)
-
-tree = Tree()
-
-# Добавление узлов в дерево
-tree.add(5)
-tree.add(3)
-tree.add(7)
-tree.add(1)
-tree.add(4)
-tree.add(6)
-tree.add(8)
-
-# Вывод дерева
-tree.printTree()
+regressor=tree.DecisionTreeRegressor()
+regressor.fit(X_train,y_train)
+tree.plot_tree(regressor)
+y_pred=regressor.predict(X_test)
+df=pd.DataFrame({'Реальные':y_test, 'Предсказанные':y_pred})
+df
+from sklearn import metrics
+print('MSE:', metrics.mean_squared_error(y_test, y_pred))
+print('MAE:', metrics.mean_absolute_error(y_test, y_pred))
+print("MAE%:",metrics.mean_absolute_error(y_test, y_pred) / np.average(y) * 100,"%")
