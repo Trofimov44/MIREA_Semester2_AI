@@ -3,33 +3,34 @@ class Tree:
         self.left = None
         self.right = None
         self.data = data
-    
-    def insert(self, value):
-        if value < self.data:
+
+    def insert(self, data):
+        if data < self.data:
             if self.left is None:
-                self.left = Tree(value)
+                self.left = Tree(data)
             else:
-                self.left.insert(value)
-        elif value > self.data:
+                self.left.insert(data)
+        elif data > self.data:
             if self.right is None:
-                self.right = Tree(value)
+                self.right = Tree(data)
             else:
-                self.right.insert(value)
-    
-    def PrintTree(self):
+                self.right.insert(data)
+
+    def print_tree(self):
         if self.left:
-            self.left.PrintTree()
+            self.left.print_tree()
         print(self.data)
         if self.right:
-            self.right.PrintTree()
+            self.right.print_tree()
 
-# Пример использования:
-root = Tree(5)
-root.insert(3)
-root.insert(7)
-root.insert(1)
-root.insert(4)
-root.insert(6)
-root.insert(8)
 
-root.PrintTree()
+
+tree = Tree(5)
+tree.insert(3)
+tree.insert(7)
+tree.insert(2)
+tree.insert(4)
+tree.insert(6)
+tree.insert(8)
+
+tree.print_tree()
